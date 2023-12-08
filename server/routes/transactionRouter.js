@@ -1,9 +1,7 @@
 const express = require('express');
-const transactionController = require('../controllers/transactionController');
-
+const PaymentController = require('../controllers/transactionController');
 const router = express.Router();
-
-router.get('/transactions/:userId', transactionController.getTransactionHistory);
-router.post('/transactions', transactionController.saveTransaction);
-
+router.post('/init-transaction', PaymentController.initTransaction);
+router.post('/confirm-transaction', PaymentController.confirmTransaction);
+router.get('/payment-history', PaymentController.getTransactionHistory);
 module.exports = router;

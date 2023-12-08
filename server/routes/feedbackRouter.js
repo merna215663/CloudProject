@@ -10,6 +10,7 @@ app.get('/', feedbackController.getFeedback);
 feedbackRouter.get('/retrievefeedback', feedbackController.getFeedback);
 feedbackRouter.post('/addfeedback', feedbackController.postFeedback);
 feedbackRouter.delete('/deletefeedback', feedbackController.deleteFeedback);
+feedbackRouter.put('/updatefeedback', feedbackController.putFeedback);
 
 module.exports = feedbackRouter;
 

@@ -40,3 +40,18 @@ module.exports.deleteFeedback = async (feedbackname) => {
         throw new Error ('Error deleting feedback.');
     }
 };
+
+module.exports.updateFeedback = async (name, updatedInfo) => {
+
+    try{
+        const updatedFeedback = await FeedbackModel.findOneAndUpdate({name}, updatedInfo, {new: true});
+        
+        if(!updatedFeedback){
+            throw new Error('Feedback not found')
+        }
+        
+        return updatedFeedback;
+    } catch (err){
+        throw new Error ('Error updating feedback.');
+    }
+};

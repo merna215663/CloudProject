@@ -1,0 +1,9 @@
+POST http://localhost:3000/transaction/init-transaction
+
+Content-Type: application/json
+{
+    
+    "amount": "9000",
+    "status":"pending",
+    "date": "12/12/202",
+}

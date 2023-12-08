@@ -55,3 +55,24 @@ module.exports.deleteFeedback=async(req,res) => {
     }
 };
 
+module.exports.putFeedback = async (req, res) => {
+    const { name } = req.params;
+    const updatedInfo = {
+        name: req.body.name,
+        email: req.body.email,
+        feedbackType: req.body.feedbackType,
+        comments: req.body.comments
+    };
+
+    try {
+        const updatedFeedback = await feedbackService.updateFeedback(name, updatedInfo);
+        return res.status(200).send({
+            msg: 'Feedback updated successfully',
+            feedbackID: updatedFeedback._id
+        });
+    } catch (err) {
+        return res.status(500).send({
+            error: err.message
+        });
+    }
+};

@@ -11,6 +11,7 @@ productsRouter.get('/retrieve', productController.getProducts);
 productsRouter.post('/post', productController.postProduct);
 productsRouter.delete('/:productID', productController.deleteProduct);
 productsRouter.get('/retrieve/:userId', productController.findMyProduct);
+productsRouter.put('/updateproduct', productController.EditProduct);
 
 module.exports = productsRouter;
 
