@@ -63,3 +63,42 @@ module.exports.removeProduct = async (productID) => {
         throw new Error('Could not remove product.');
       }
 };
+
+module.exports.buyProduct = async (product) => {
+    try {
+       product.available = true;
+       product.paid = true;
+       product.pending = false;
+   
+       const updatedProduct = await product.save();
+       return updatedProduct;
+    } catch (err) {
+       throw err;
+    }
+   };
+
+   module.exports.negotiateProductPrice = async (productId, proposedPrice) => {
+    try {
+       const product = await productService.findProductbyID(productId);
+   
+       if (!product) {
+         throw new Error('Product not found');
+       }
+   
+       if (product.pending) {
+         throw new Error('Product is pending for approval');
+       }
+   
+       if (product.available) {
+         throw new Error('Product is already available');
+       }
+   
+       product.price = proposedPrice;
+       product.pending = true;
+   
+       const updatedProduct = await product.save();
+       return updatedProduct;
+    } catch (err) {
+       throw err;
+    }
+   };

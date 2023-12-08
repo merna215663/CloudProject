@@ -1,17 +1,21 @@
 const express=require('express');
+const dotenv = require ('dotenv');
 const cors=require('cors');
 
-
+dotenv.config({
+    path: './config/.env'
+});
 
 const app = express();
+const PORT = process.env.PORT;
+const initiateDBConnection = require('./config/db');
+
 app.use(cors({
     origin:[
         "http://localhost:3000"
     ]
 }
 ));
-const PORT = process.env.PORT;
-const initiateDBConnection = require('./config/db');
 
 
 //products

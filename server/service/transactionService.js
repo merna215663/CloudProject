@@ -1,4 +1,4 @@
-const stripe = require('stripe')('your_stripe_api_key');
+const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 const Payment = require('../models/Transaction');
 
 module.exports.getTransactionHistory = async (userId) => {

@@ -89,3 +89,56 @@ module.exports.EditProduct = async(req, res) => {
         });
     }
 };
+
+// Negotiate on Item Prices and Terms
+module.exports.negotiateProduct = async (req, res) => {
+    try {
+       const { productId } = req.body;
+       const { proposedPrice } = req.body;
+   
+       if (!productId || !proposedPrice) {
+         return res.status(400).json({ error: 'productId and proposedPrice are required' });
+       }
+   
+       const negotiatedProduct = await productService.negotiateProductPrice(productId, proposedPrice);
+       res.status(200).send({ msg: 'Negotiation successful', product: negotiatedProduct });
+    } catch (err) {
+       res.status(500).send({ error: err.message });
+    }
+   };
+
+   module.exports.buyProduct = async (req, res) => {
+    const productId = req.params.productID;
+   
+    try {
+       const product = await productService.findProductbyID(productId);
+   
+       if (!product) {
+         return res.status(404).send({
+           error: 'Product not found'
+         });
+       }
+   
+       if (product.available) {
+         return res.status(400).send({
+           error: 'Product is already available'
+         });
+       }
+   
+       if (product.pending) {
+         return res.status(400).send({
+           error: 'Product is pending for approval'
+         });
+       }
+   
+       const updatedProduct = await productService.buyProduct(product);
+       res.send({
+         msg: 'Product purchased successfully',
+         product: updatedProduct
+       });
+    } catch (err) {
+       return res.status(500).send({
+         error: err.message
+       });
+    }
+   };

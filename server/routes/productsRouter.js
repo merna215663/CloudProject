@@ -12,6 +12,7 @@ productsRouter.post('/post', productController.postProduct);
 productsRouter.delete('/:productID', productController.deleteProduct);
 productsRouter.get('/retrieve/:userId', productController.findMyProduct);
 productsRouter.put('/updateproduct', productController.EditProduct);
-
+productsRouter.post('/negotiate', productController.negotiateProduct);
+productsRouter.put('/:productID/buy', productController.buyProduct);
 module.exports = productsRouter;
 

@@ -53,22 +53,7 @@ module.exports.sendNotification = async (req, res) => {
   }
  };
  
- // Negotiate on Item Prices and Terms
- module.exports.negotiateProduct = async (req, res) => {
-  try {
-     const { productId } = req.body;
-     const { proposedPrice } = req.body;
  
-     if (!productId || !proposedPrice) {
-       return res.status(400).json({ error: 'productId and proposedPrice are required' });
-     }
- 
-     const negotiatedProduct = await productService.negotiateProductPrice(productId, proposedPrice);
-     res.status(200).send({ msg: 'Negotiation successful', product: negotiatedProduct });
-  } catch (err) {
-     res.status(500).send({ error: err.message });
-  }
- };
  
  // Search and Filter
  module.exports.searchProducts = async (req, res) => {
