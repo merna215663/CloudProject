@@ -4,13 +4,13 @@ const AccountController = require ('../controllers/Account');
 
 const AccountRouter = Router();
 
-AccountRouter.delete('/:userId', AccountController.deleteUser);
+AccountRouter.delete('/delete/:userId', AccountController.deleteUser);
 
 AccountRouter.post('/signin', AccountController.postUser);
 
-AccountRouter.get('/:userId', AccountController.viewProductHistory);
+AccountRouter.get('/view/:userId', AccountController.viewProductHistory);
 
-AccountRouter.put('/:userId', AccountController.EditAccount);
+AccountRouter.put('/edit/:userId', AccountController.EditAccount);
 
 AccountRouter.post('/signup',AccountController.postUser);
 
