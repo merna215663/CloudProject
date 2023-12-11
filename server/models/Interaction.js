@@ -33,13 +33,14 @@ const {Schema, model, trusted} = require('mongoose');
     
   });
   
-  const chatMessageSchema = new mongoose.Schema({
+  /*const chatMessageSchema = new mongoose.Schema({
     message: {
       type: String,
       required: true,
     },
   });
-  
+  */
 const ItemprogressModel = model('itemprogress',itemprogressSchema );
-const chatMessageModel=model('chatmessage',chatMessageSchema)
-module.exports = {ItemprogressModel, chatMessageModel};
+//const chatMessageModel=model('chatmessage',chatMessageSchema)
+//module.exports = {ItemprogressModel, chatMessageModel};
+module.exports={ItemprogressModel};

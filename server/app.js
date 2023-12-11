@@ -1,14 +1,14 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const socketIo = require('socket.io');
+//const socketIo = require('socket.io');
 
 dotenv.config({
   path: './config/.env',
 });
 
-const server = http.createServer(app);
-const io = socketIo(server);
+//const server = http.createServer(app);
+//const io = socketIo(server);
 const app = express();
 const PORT = process.env.PORT;
 app.use(express.json());
@@ -41,7 +41,7 @@ const interactionController = require('./controllers/interactionController');
 const interactionRouter = require('./routes/interactionRouter');
 app.use('/itemprogress', interactionRouter);
 
-io.on('connection', (socket) => {
+/*io.on('connection', (socket) => {
   console.log('User connected');
 
   // Handle chat messages
@@ -55,7 +55,7 @@ io.on('connection', (socket) => {
   });
 });
 
-
+*/
 //product exchange
 const productsExRouter = require('./routes/productExRouter');
 app.use('/ProductExchange', productsExRouter);
