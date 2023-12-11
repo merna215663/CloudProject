@@ -4,6 +4,62 @@ const transactionService = require('../service/transactionService');
 const emailService = require('../service/emailService');
 //const io = require('../socket'); // Import the Socket.io instance
 
+//updated
+module.exports.handleChatMessage=async(io,socket,message)=>{
+   try {
+      
+      await chatService.handleChatMessage(io, socket, message);
+      socket.emit('chatMessageAcknowledgment', 'Message received successfully');
+    } catch (error) {
+      console.error('Error handling chat message in controller:', error);
+      socket.emit('chatMessageError', 'Error handling chat message'); 
+   }
+};
+
+module.exports.trackProgress=async (req, res) => {
+   try {
+     const { orderId } = req.params;
+     const progress = await interactionService.trackProgress(orderId);
+     res.status(200).json({ progress });
+   } catch (error) {
+     res.status(500).json({ error: error.message });
+   }
+ };
+ 
+   module.exports.updateShippingStatus=async (req, res) => {
+      try {
+        const { orderId } = req.params;
+        const { newShippingStatus } = req.body;
+        const updatedInteraction = await interactionService.updateShippingStatus(orderId, newShippingStatus);
+        res.status(200).json({ updatedInteraction });
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    };
+ 
+   module.exports.updatePaymentStatus=async (req, res) => {
+      try {
+        const { orderId } = req.params;
+        const { newPaymentStatus } = req.body;
+        const updatedInteraction = await interactionService.updatePaymentStatus(orderId, newPaymentStatus);
+        res.status(200).json({ updatedInteraction });
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    };
+ 
+   module.exports.confirmDelivery= async (req, res) => {
+      try {
+        const { orderId } = req.params;
+        const { newdeliveryConfirmation } = req.body;
+        const updatedInteraction = await interactionService.confirmDelivery(orderId,newdeliveryConfirmation);
+        res.status(200).json({ updatedInteraction });
+      } catch (error) {
+        res.status(500).json({ error: error.message });
+      }
+    };
+
+/*
 // Progress Tracking
 
 module.exports.updateItemProgress = async (req, res) => {
@@ -53,8 +109,6 @@ module.exports.sendNotification = async (req, res) => {
   }
  };
  
- 
- 
  // Search and Filter
  module.exports.searchProducts = async (req, res) => {
   try {
@@ -69,6 +123,6 @@ module.exports.sendNotification = async (req, res) => {
   } catch (err) {
      res.status(500).send({ error: err.message });
   }
- };
+ };*/
 
 

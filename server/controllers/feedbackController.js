@@ -39,15 +39,28 @@ const feedbackInfo={
        });
        
     }
+    /*try {
+        const { name, email, feedbackType, comments } = req.body;
+    
+        if (!name || !email || !feedbackType || !comments) {
+          return res.status(400).json({ error: 'Incomplete information for feedback' });
+        }
+    
+        const newFeedback = await FeedbackService.addFeedback(name, email, feedbackType, comments);
+    
+        res.status(201).json({ message: 'Feedback added successfully', feedback: newFeedback });
+      } catch (error) {
+        res.status(500).json({ error: 'Internal Server Error' });
+      }*/
 };
 
 //delete feedback
 module.exports.deleteFeedback=async(req,res) => {
-    const {name} = req.params;
+    const {feedbackId} = req.params;
 
     try{
 
-          const deletedFeedback= await feedbackService.deleteFeedback(name);
+          const deletedFeedback= await feedbackService.deleteFeedback(feedbackId);
           return res.json({message: 'feedback deleted successfully', deletedFeedback});
     }catch(error){
         console.error(error);

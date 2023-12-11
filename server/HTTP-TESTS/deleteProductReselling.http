@@ -1,1 +1,1 @@
-DELETE http://localhost:3000/products/:productID
+DELETE http://localhost:3000/products/65736ceb4ae2f46d82201535

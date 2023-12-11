@@ -1,1 +1,1 @@
-DELETE http://localhost:3000/feedback/deletefeedback
+DELETE http://localhost:3000/feedback/deletefeedback/:feedbackId
