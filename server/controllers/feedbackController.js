@@ -2,15 +2,16 @@ const feedbackService = require('../service/feedbackService');
 
 //retrieve feedback
 module.exports.getFeedback = async (req, res) => {
-
-    try{
-
+    try {
         const feedbacks = await feedbackService.findAllFeedbacks();
-        res.send ({feedbacks });
-    } catch(err) {
-
+        const feedback = feedbacks.find(f => f.name === req.params.name);
+        if (!feedback) {
+            return res.status(404).send({ message: 'Feedback not found for the given name.' });
+        }
+        res.send({ feedback: feedback.comments });
+    } catch (err) {
         res.status(500);
-        res.send ({
+        res.send({
             error: err
         });
     }
