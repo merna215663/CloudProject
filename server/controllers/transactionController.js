@@ -1,10 +1,11 @@
 const PaymentServices = require('../service/transactionService');
+const TransactionModel = require('../models/Transaction');
 const readline = require('readline');
 const rl = readline.createInterface({
   input: process.stdin,
   output: process.stdout
 });
-module.exports.getTransactionHistory = async (req, res) => {
+/*module.exports.getTransactionHistory = async (req, res) => {
     try {
       const transactions = await this.paymentService.getPaymentHistory();
       res.status(200).json(transactions);
@@ -13,6 +14,16 @@ module.exports.getTransactionHistory = async (req, res) => {
         res.status(500).json({ error: error.message });
       }
    };
+*/
+module.exports.getTransactionHistory = async (req, res) => {
+  try {
+    const transactions = await TransactionModel.find();
+    res.status(200).json(transactions);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+};
+
 
 module.exports.confirmTransaction = async (req, res) => {
     try {

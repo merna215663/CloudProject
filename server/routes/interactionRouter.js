@@ -11,7 +11,7 @@ router.post('/sendnotification', itemProgressController.sendNotification);
 
 router.post('/chatMessage',itemProgressController.handleChatMessage);
 router.get('/track/:orderId', itemProgressController.trackProgress);
-router.put('/updateShippingStatus/:orderId', itemProgressController.updateShippingStatus);
+router.put('/updateShippingStatus', itemProgressController.updateShippingStatus);
 router.put('/updatePaymentStatus/:orderId', itemProgressController.updatePaymentStatus);
 router.put('/confirmDelivery/:orderId', itemProgressController.confirmDelivery);
 module.exports = router;

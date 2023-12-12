@@ -43,4 +43,4 @@ const {Schema, model, trusted} = require('mongoose');
 const ItemprogressModel = model('itemprogress',itemprogressSchema );
 //const chatMessageModel=model('chatmessage',chatMessageSchema)
 //module.exports = {ItemprogressModel, chatMessageModel};
-module.exports={ItemprogressModel};
+module.exports=ItemprogressModel;

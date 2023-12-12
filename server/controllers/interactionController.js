@@ -8,7 +8,7 @@ const emailService = require('../service/emailService');
 module.exports.handleChatMessage=async(io,socket,message)=>{
    try {
       
-      await chatService.handleChatMessage(io, socket, message);
+      await interactionService.handleChatMessage(io, socket, message);
       socket.emit('chatMessageAcknowledgment', 'Message received successfully');
     } catch (error) {
       console.error('Error handling chat message in controller:', error);

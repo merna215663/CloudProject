@@ -34,7 +34,7 @@ const Interaction = require('../models/Interaction');
         throw new Error('Transaction not found');
       }
 
-      return updatedTransaction;
+      return updatedInteraction;
     } catch (error) {
       throw new Error(`Error updating shipping status: ${error.message}`);
     }
