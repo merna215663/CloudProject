@@ -1,11 +1,8 @@
 const express = require('express');
-const dotenv = require('dotenv');
 const cors = require('cors');
 //const socketIo = require('socket.io');
 
-dotenv.config({
-  path: './config/.env',
-});
+
 
 //const server = http.createServer(app);
 //const io = socketIo(server);
