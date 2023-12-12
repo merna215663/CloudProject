@@ -4,11 +4,8 @@ const feedbackService = require('../service/feedbackService');
 module.exports.getFeedback = async (req, res) => {
     try {
         const feedbacks = await feedbackService.findAllFeedbacks();
-        const feedback = feedbacks.find(f => f.name === req.params.name);
-        if (!feedback) {
-            return res.status(404).send({ message: 'Feedback not found for the given name.' });
-        }
-        res.send({ feedback: feedback.comments });
+        
+        res.send({ feedbacks });
     } catch (err) {
         res.status(500);
         res.send({
@@ -19,15 +16,16 @@ module.exports.getFeedback = async (req, res) => {
 
 //add feedback
 module.exports.postFeedback = async (req, res) => {
-const feedbackInfo={
-    name:req.body.name,
-    email:req.body.email,
-    feedbackType:req.body.feedbackType,
-    comments:req.body.comments
-};
+
 
     try{
-
+        const feedbackInfo={
+            name:req.body.name,
+            email:req.body.email,
+            feedbackType:req.body.feedbackType,
+            comments:req.body.comments
+        };
+console.log(feedbackInfo,'feedbackkkkkkkk');
         const createdFeedback = await feedbackService.addNewFeedback(feedbackInfo);
         return res.status(201).send ({
             msg:'Feedback created successfully' ,
@@ -40,19 +38,6 @@ const feedbackInfo={
        });
        
     }
-    /*try {
-        const { name, email, feedbackType, comments } = req.body;
-    
-        if (!name || !email || !feedbackType || !comments) {
-          return res.status(400).json({ error: 'Incomplete information for feedback' });
-        }
-    
-        const newFeedback = await FeedbackService.addFeedback(name, email, feedbackType, comments);
-    
-        res.status(201).json({ message: 'Feedback added successfully', feedback: newFeedback });
-      } catch (error) {
-        res.status(500).json({ error: 'Internal Server Error' });
-      }*/
 };
 
 //delete feedback

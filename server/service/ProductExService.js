@@ -1,42 +1,40 @@
 const Item = require('../models/ProductEx');
 
-class ItemService {
-  constructor() {
-    this.items = [];
-  }
+module.exports.addProductEx = async (productInfo) => {
+  try {
+    const product = new Item({
+      name: productInfo.name,
+      description: productInfo.description,
+      price: productInfo.price,
+      available: productInfo.available,
+      imgURL: productInfo.imgURL
+    });
 
-  getAllItems() {
-    return this.items;
+    const createdProduct = await product.save();
+    return createdProduct;
+  } catch (err) {
+    throw new Error('Could not create product.');
   }
+};
 
-  createItem(item) {
-    this.items.push(item);
-    return item;
-  }
-
-  deleteItem(itemId) {
-    this.items = this.items.filter(item => item.id !== itemId);
-  }
-
-  updateItemStatus(itemId, status) {
-    const item = this.items.find(item => item.id === itemId);
-    if (item) {
-      item.status = status;
-      return item;
-    } else {
-      return null;
+module.exports.removeProductEx = async (productId) => {
+  try {
+    const result=await Item.findByIdAndDelete(productId);
+    if (!result) {
+      throw new Error('Product not found');
     }
-  }
 
-  makeExchangeOffer(itemId, offeredItem) {
-    const item = this.items.find(item => item.id === itemId);
-    if (item) {
-      item.exchangeOffer = offeredItem;
-      return item;
-    } else {
-      return null;
-    }
+    return { success: true, message: 'Product removed successfully.' };
+  } catch (err) {
+    throw new Error(`Could not remove product`);
   }
-}
+};
 
-module.exports = new ItemService();
+module.exports.findAllProducts = async () => {
+  try {
+    const products = await Item.find();
+    return products;
+  } catch (err) {
+    throw new Error('Could not retieve products');
+  }
+};

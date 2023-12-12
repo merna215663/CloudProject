@@ -56,11 +56,16 @@ module.exports.editProduct = async (productId, updatedData) => {
   }
 };
 
-module.exports.removeProduct = async (productID) => {
+module.exports.removeProduct = async (productId) => {
   try {
-    await ProductModel.deleteOne({ _id: productID });
+    const result=await ProductModel.findByIdAndDelete(productId);
+    if (!result) {
+      throw new Error('Product not found');
+    }
+
+    return { success: true, message: 'Product removed successfully.' };
   } catch (err) {
-    throw new Error('Could not remove product.');
+    throw new Error(`Could not remove product`);
   }
 };
 

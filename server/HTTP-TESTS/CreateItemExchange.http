@@ -1,1 +1,11 @@
 POST http://localhost:3000/ProductExchange/additems
+
+Content-Type: application/json
+{
+    "name":"Microsoft Surface",
+    "description":"A great laptop built and designed by Microsoft",
+    "price":900,
+    "available":"yes",
+    "imgURL":"https://thumbs.dreamstime.com/b/apple-iphone-xs-silver-bright-colorful-background-front-back-sides-visible-concept-composition-ideal-commercial-143226402.jpg"
+   
+}

@@ -18,7 +18,7 @@ module.exports.addNewFeedback = async (feedbackInfo) => {
             name: feedbackInfo.name,
             email: feedbackInfo.email,
             feedbackType:feedbackInfo.feedbackType,
-            comment: feedbackInfo.comment
+            comments: feedbackInfo.comments
         });
 
         const createdFeedback = await feedbackk.save();
@@ -28,14 +28,15 @@ module.exports.addNewFeedback = async (feedbackInfo) => {
     }
 };
 
-module.exports.deleteFeedback = async (feedbackname) => {
+module.exports.deleteFeedback = async (feedbackId) => {
 
     try{
-        const deletedfeedbackk =  await feedbackk.findOneAndDelete({name});
+        const deletedfeedbackk =  await FeedbackModel.findByIdAndDelete(feedbackId);
         
         if(!deletedfeedbackk){
             throw new Error('Feedback not found')
         }
+        return{success:true,message:'Feedback Deleted successfully'};
     } catch (err){
         throw new Error ('Error deleting feedback.');
     }

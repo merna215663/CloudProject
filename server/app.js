@@ -17,7 +17,7 @@ const initiateDBConnection = require('./config/db');
 
 app.use(
   cors({
-    origin: ['http://localhost:3000'],
+    origin: ['http://localhost:3001'],
   })
 );
 
@@ -57,8 +57,8 @@ app.use('/itemprogress', interactionRouter);
 
 */
 //product exchange
-const productsExRouter = require('./routes/productExRouter');
-app.use('/ProductExchange', productsExRouter);
+const productExRouter = require('./routes/productExRouter');
+app.use('/ProductExchange', productExRouter);
 
 //Account
 const Accountt = require('./routes/Account');

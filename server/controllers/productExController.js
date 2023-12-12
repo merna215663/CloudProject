@@ -1,46 +1,51 @@
 const itemService = require('../service/ProductExService');
 
-class ItemController {
-  getAllItems(req, res) {
-    const items = itemService.getAllItems();
-    res.json(items);
+module.exports.getExProducts = async (req, res) => {
+  try {
+    const products = await itemService.findAllProducts();
+    res.send({ products });
+  } catch (err) {
+    res.status(500);
+    res.send({
+      error: err,
+    });
   }
+};
 
-  createItem(req, res) {
-    const newItem = req.body;
-    const createdItem = itemService.createItem(newItem);
-    res.json({ message: 'Item added successfully', item: createdItem });
+module.exports.postExProduct = async (req, res) => {
+  const productInfo = {
+    name: req.body.name,
+    description: req.body.description,
+    price: req.body.price,
+    available:req.body.available,
+    imgURL: req.body.ImgURL
+  };
+
+  try {
+    console.log(productInfo, 'serviceeeeeeeee');
+    const createdProduct = await itemService.addProductEx(productInfo);
+    return res.status(201).send({
+      msg: 'Product added successfully',
+      productId: createdProduct._id
+    });
+  } catch (err) {
+    return res.status(500).send({
+      error: err.message,
+    });
   }
+};
 
-  deleteItem(req, res) {
-    const itemId = req.params.id;
-    itemService.deleteItem(itemId);
-    res.json({ message: 'Item deleted successfully' });
+module.exports.deleteExProduct = async (req, res) => {
+  const productId = req.params.productId;
+  try {
+    const del = await itemService.removeProductEx(productId);
+    res.send({
+      del,
+      msg: 'Product deleted successfully.',
+    });
+  } catch (err) {
+    return res.status(500).send({
+      error: err.message,
+    });
   }
-
-  updateItemStatus(req, res) {
-    const itemId = req.params.id;
-    const { status } = req.body;
-    const updatedItem = itemService.updateItemStatus(itemId, status);
-
-    if (updatedItem) {
-      res.json({ message: 'Item status updated successfully', item: updatedItem });
-    } else {
-      res.status(404).json({ message: 'Item not found' });
-    }
-  }
-
-  makeExchangeOffer(req, res) {
-    const itemId = req.params.id;
-    const { offeredItem } = req.body;
-    const itemWithOffer = itemService.makeExchangeOffer(itemId, offeredItem);
-
-    if (itemWithOffer) {
-      res.json({ message: 'Exchange offer made successfully', item: itemWithOffer });
-    } else {
-      res.status(404).json({ message: 'Item not found' });
-    }
-  }
-}
-
-module.exports = new ItemController();
+};

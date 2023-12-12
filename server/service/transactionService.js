@@ -1,7 +1,7 @@
-const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
+//const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 const Payment = require('../models/Transaction');
 
-module.exports.getTransactionHistory = async (userId) => {
+/*module.exports.getTransactionHistory = async (userId) => {
     try {
         return await Payment.find({ userId });
     } catch (err) {
@@ -45,4 +45,43 @@ module.exports.confirmIntent = async (clientSecret, paymentMethodId) =>{
         } catch (err) {
             throw new Error('Error processing refund: ' + err.message);
         }
+    };*/
+
+    function generateUniqueTransactionId() {
+        const timestamp = new Date().getTime().toString(36);
+        const randomNumber = Math.random().toString(36).substring(2, 8);
+        return `${timestamp}-${randomNumber}`;
+      }
+      
+      module.exports.initPayment = async function (amount) {
+        if (!amount) {
+          throw new Error('Amount is required for payment initiation.');
+        }
+      
+        const uniqueTransactionId = generateUniqueTransactionId();
+        const transaction = new Payment({
+          transactionId: uniqueTransactionId,
+          amount,
+          status: 'Initiated',
+          date: new Date(),
+        });
+      
+        await transaction.save();
+        return transaction;
+      };
+      
+
+
+    module.exports.confirmPayment = async (paymentId) => {
+        const transaction = await Payment.findOneAndUpdate({ paymentId },
+            { status: 'Confirmed' },
+            { new: true }
+          );
+          return transaction;
     };
+
+    module.exports.getPaymentHistory = async () => {
+        const transaction = await Payment.find();
+          return transaction;
+    };
+

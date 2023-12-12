@@ -1,12 +1,14 @@
-const express = require('express');
-const itemController = require('../controllers/productExController');
+/*
+//router.put('/updateitems/:id/status', itemController.updateItemStatus);
+//router.post('/exitems/:id/exchange-offer', itemController.makeExchangeOffer);
 
-const router = express.Router();
+module.exports = router;*/
 
-router.get('/items', itemController.getAllItems);
-router.post('/additems', itemController.createItem);
-router.delete('/deleteitems/:id', itemController.deleteItem);
-router.put('/updateitems/:id/status', itemController.updateItemStatus);
-router.post('/exitems/:id/exchange-offer', itemController.makeExchangeOffer);
+const { Router } = require('express');
+const productExController = require('../controllers/productExController');
+const productsExRouter = Router();
 
-module.exports = router;
+productsExRouter.get('/items', productExController.getExProducts);
+productsExRouter.post('/additems', productExController.postExProduct); //
+productsExRouter.delete('/deleteitems/:id', productExController.deleteExProduct); //
+module.exports = productsExRouter;

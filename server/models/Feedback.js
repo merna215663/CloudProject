@@ -20,8 +20,8 @@ const FeedbackSchema = new Schema({
 });
 
 //an index on the 'name' field for efficient queries
-FeedbackSchema.index({ name: 1 });
+//FeedbackSchema.index({ name: 1 });
 
 const FeedbackModel = model('feedback',FeedbackSchema );
 
-module.exports = FeedbackModel;
+module.exports =FeedbackModel;

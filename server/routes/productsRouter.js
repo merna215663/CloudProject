@@ -9,9 +9,9 @@ const productsRouter = Router();
 
 productsRouter.get('/retrieve', productController.getProducts);
 productsRouter.post('/post', productController.postProduct); //
-productsRouter.delete('/:productID', productController.deleteProduct); //
-productsRouter.get('/retrieve/:productId', productController.findMyProduct);
-productsRouter.put('/:productID/updateproduct', productController.EditProduct); //
-productsRouter.post('/:productId/negotiate',productController.negotiateProduct);
-productsRouter.put('/:productID/buy', productController.buyProduct);
+productsRouter.delete('/:productId', productController.deleteProduct); //
+//productsRouter.get('/retrieve/:productId', productController.findMyProduct);
+//productsRouter.put('/:productID/updateproduct', productController.EditProduct); //
+//productsRouter.post('/:productId/negotiate',productController.negotiateProduct);
+//productsRouter.put('/:productID/buy', productController.buyProduct);
 module.exports = productsRouter;

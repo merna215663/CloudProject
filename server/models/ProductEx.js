@@ -1,39 +1,24 @@
-const {Schema, model, trusted} = require('mongoose');
+const { Schema, model, trusted } = require('mongoose');
 
-const ProductExSchema = new Schema({
+const ProductSchemaEx = new Schema({
+  name: {
+    type: 'String',
+  },
 
-    name: {
-        type: 'String',
-        required: true
-    },
-
-    description: {
-        type: 'String',
-        required: true
-    },
-    price: {
-        type: 'Number',
-        required: true
-    },
-    available:{
-        type:'Boolean',
-        required: true
-    },
-    pending:{
-        type:'Boolean',
-        required:true
-    },
-    paid:{
-        type:'Boolean',
-        required:true
-    },
-    imgURL: {
-        type: 'String',
-    }
+  description: {
+    type: 'String',
+  },
+  price: {
+    type: 'Number',
+  },
+  available: {
+    type: 'String',
+  },
+  imgURL: {
+    type: 'String',
+  },
 });
 
+const ProductExModel = model('productEx', ProductSchemaEx);
 
-const ProductEXModel = model('productEx',ProductExSchema );
-
-module.exports = ProductEXModel;
-
+module.exports = ProductExModel;

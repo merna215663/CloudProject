@@ -14,10 +14,11 @@ module.exports.deleteUser = async (userId) => {
 module.exports.createUser = async (userInfo) => {
   try {
     const user = new UsersModel({
-      Name: userInfo.Name,
       Username: userInfo.Username,
       Password: userInfo.Password,
-      Email: userInfo.Email,
+      Name: userInfo.Name,
+      Role:userInfo.Role,
+      Email: userInfo.Email
     });
     const CreatedUser = await user.save();
     return CreatedUser;
