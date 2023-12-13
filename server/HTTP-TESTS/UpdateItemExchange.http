@@ -1,1 +1,1 @@
-PUT http://localhost:3000/ProductExchange/updateitems/:id/status
+PUT https://shopix.azurewebsites.net/ProductExchange/updateitems/:id/status

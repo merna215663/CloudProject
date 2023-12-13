@@ -1,1 +1,1 @@
-POST http://localhost:3000/itemprogress/sendnotification
+POST https://shopix.azurewebsites.net/itemprogress/sendnotification

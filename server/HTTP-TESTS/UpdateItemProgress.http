@@ -1,1 +1,1 @@
-PUT http://localhost:3000/itemprogress/updateItemProgress/:itemId
+PUT https://shopix.azurewebsites.net/itemprogress/updateItemProgress/:itemId

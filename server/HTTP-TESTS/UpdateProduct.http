@@ -1,4 +1,4 @@
-PUT http://localhost:3000/products/65736aa57472144433aaac0f/updateproduct
+PUT https://shopix.azurewebsites.net/products/65736aa57472144433aaac0f/updateproduct
 
 Content-Type: application/json
 {

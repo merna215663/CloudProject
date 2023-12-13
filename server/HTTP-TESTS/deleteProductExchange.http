@@ -1,1 +1,1 @@
-DELETE http://localhost:3000/ProductExchange/deleteitems/6577c0adddad48ff63f7e369
+DELETE https://shopix.azurewebsites.net/ProductExchange/deleteitems/6577c0adddad48ff63f7e369

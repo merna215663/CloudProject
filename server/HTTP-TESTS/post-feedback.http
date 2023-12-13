@@ -1,4 +1,4 @@
-POST http://localhost:3000/feedback/addfeedback
+POST https://shopix.azurewebsites.net/feedback/addfeedback
 
 Content-Type: application/json
 {

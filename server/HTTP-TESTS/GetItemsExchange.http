@@ -1,1 +1,1 @@
-GET http://localhost:3000/ProductExchange/items
+GET https://shopix.azurewebsites.net/ProductExchange/items

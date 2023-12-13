@@ -1,4 +1,4 @@
-POST http://localhost:3000/Account/signup 
+POST https://shopix.azurewebsites.net/Account/signup 
 Content-Type: application/json
 
 {

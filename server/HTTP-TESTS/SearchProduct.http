@@ -1,1 +1,1 @@
-GET http://localhost:3000/itemprogress/search
+GET https://shopix.azurewebsites.net/itemprogress/search

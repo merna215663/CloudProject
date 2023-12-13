@@ -1,2 +1,2 @@
-GET http://localhost:3000/feedback/retrievefeedback
+GET https://shopix.azurewebsites.net/feedback/retrievefeedback
 

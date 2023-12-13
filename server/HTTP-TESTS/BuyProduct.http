@@ -1,1 +1,1 @@
-PUT http://localhost:3000/products/:productID/buy
+PUT https://shopix.azurewebsites.net/products/:productID/buy

@@ -1,4 +1,4 @@
-POST http://localhost:3000/ProductExchange/additems
+POST https://shopix.azurewebsites.net/ProductExchange/additems
 
 Content-Type: application/json
 {
